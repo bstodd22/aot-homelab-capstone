@@ -1,6 +1,3 @@
-# aot-homelab-capstone
-Cybersecurity homelab simulating a segmented enterprise environment with VLANs, pfSense firewalling, internal services, and security testing of an intentionally vulnerable application.
-
 # AOT Homelab Capstone
 
 This repository documents an ongoing cybersecurity homelab designed to simulate a segmented enterprise environment similar to operational technology (AOT) infrastructure.
