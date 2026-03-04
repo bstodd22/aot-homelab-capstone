@@ -1,62 +1,96 @@
 # aot-homelab-capstone
 Cybersecurity homelab simulating a segmented enterprise environment with VLANs, pfSense firewalling, internal services, and security testing of an intentionally vulnerable application.
 
-# AOT Homelab Capstone (WGU)
+# AOT Homelab Capstone
 
-This repository tracks an ongoing cybersecurity homelab project designed to simulate an AOT-style enterprise environment:
-segmented networks, controlled inter-VLAN access, centralized logging/detection, and a deliberate insecure “vibe-coded” internal
-application used for realistic testing and remediation.
+This repository documents an ongoing cybersecurity homelab designed to simulate a segmented enterprise environment similar to operational technology (AOT) infrastructure.
 
-## Objectives
-- Design and operate a segmented network with pfSense + VLANs
-- Validate segmentation with explicit firewall rules and testing
-- Deploy an intentionally insecure internal helpdesk app (Node.js) for web pentesting practice
-- Add detection + logging to support investigation workflows (SIEM/EDR-style)
-- Extend into cloud to simulate hybrid security controls
+The lab focuses on network segmentation, internal service deployment, security monitoring, and controlled vulnerability testing.
 
-## Current Lab Architecture
-- Hypervisor: Proxmox
-- Firewall: pfSense (VM)
-- Switching: Managed switch with 802.1Q trunking
-- VLANs:
-  - VLAN 10: Internal LAN (10.10.10.0/24)
-  - VLAN 30: Server network (10.30.30.0/24)
-- Routing: Inter-VLAN routing via pfSense with explicit allow/deny rules
-- NAT: Outbound NAT configured and verified
+---
 
-## Work Completed (Highlights)
-- pfSense deployed and routed VLAN 10 / VLAN 30
-- 802.1Q trunk configured to managed switch
-- Troubleshot:
-  - APIPA/self-assigned IPs from incorrect tagging/PVID
-  - trunk/access port confusion (L2 vs L3 issues)
-  - missing interface-level firewall rules
-- Deployed internal “Alliah IT Portal” helpdesk app (Node.js) in lab
+## Infrastructure
 
-## Testing Plan
-### Web App
-- Authentication + session handling review
-- Authorization checks (IDOR-style access patterns)
-- Input validation (XSS/SQLi patterns depending on stack)
-- File upload handling and storage controls
+**Hypervisor**
+- Proxmox
 
-### Network / Segmentation Validation
-- Verify intended east/west traffic paths
-- Attempt lateral movement simulation across VLANs
-- Confirm logging visibility of scans/blocked traffic
+**Firewall**
+- pfSense (virtual machine)
 
-## Detection / Logging Roadmap
-- Centralize logs (pfSense + Linux + Windows)
-- Add IDS/IPS visibility (Suricata/Zeek) where appropriate
-- Build basic detections + investigation notes
+**Networking**
+- Managed switch with 802.1Q VLAN trunking
 
-## Repo Navigation
-- `lab/` network design, configs, inventory
-- `app/` application and supporting infra notes
-- `pentest/` test plans, findings, remediation, evidence
-- `detection/` logging + detection configs and notes
-- `cloud/` hybrid extension design + IaC notes
-- `docs/` scope, status, threat model, changelog
+**Server**
+- Ubuntu Server running Docker
 
-## Disclaimer
-This lab is for defensive learning and authorized testing in a controlled environment only. Do not expose intentionally vulnerable services to the public internet.
+**Application**
+- Node.js internal helpdesk portal (lab-only)
+
+---
+
+## Network Architecture
+
+VLAN segmentation is enforced using pfSense.
+
+| VLAN | Purpose | Subnet |
+|-----|------|------|
+| VLAN 10 | Internal LAN | 10.10.10.0/24 |
+| VLAN 30 | Server Network | 10.30.30.0/24 |
+
+Traffic between VLANs requires explicit firewall rules.
+
+---
+
+## Services Deployed
+
+**Ubuntu Server (Docker host)**
+
+Running containers including:
+
+- Internal helpdesk portal (Node.js)
+- Future logging / monitoring stack
+
+---
+
+## Current Work Completed
+
+- pfSense deployed on Proxmox
+- Managed switch configured with VLAN trunking
+- VLAN 10 and VLAN 30 networks operational
+- Inter-VLAN routing configured
+- NAT verified
+- Internal web application deployed in Docker
+
+Troubleshooting included:
+
+- APIPA (169.x.x.x) addresses caused by incorrect VLAN tagging
+- PVID configuration errors
+- Trunk vs access port confusion
+- Missing interface firewall rules
+
+---
+
+## Planned Work
+
+Next phases of the project include:
+
+- Centralized logging
+- IDS/IPS monitoring
+- Simulated internal attack scenarios
+- Testing segmentation enforcement
+- Hardening the internal application
+- Extending the environment into cloud infrastructure
+
+---
+
+## Purpose
+
+This lab is designed to develop practical experience in:
+
+- Network segmentation
+- Firewall rule design
+- Infrastructure troubleshooting
+- Web application security testing
+- Detection and monitoring workflows
+
+The goal is to understand how security controls operate together in a realistic environment.
