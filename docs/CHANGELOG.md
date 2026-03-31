@@ -2,6 +2,14 @@
 
 ## 2026-03-03
 
+## [Latest Update] - Wazuh + RDP + Inter-VLAN Routing
+
+- Deployed Wazuh SIEM on Ubuntu server
+- Onboarded Windows Server as monitored agent
+- Configured inter-VLAN routing between VLAN 10 and VLAN 30
+- Implemented firewall rules for controlled RDP access
+- Validated traffic flow and troubleshooting methodology
+
 Initial homelab architecture completed.
 
 Infrastructure deployed:
