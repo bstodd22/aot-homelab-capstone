@@ -1,6 +1,6 @@
 # Homelab Changelog
 
-## 2026-03-03
+## 2026-03-31
 
 ## [Latest Update] - Wazuh + RDP + Inter-VLAN Routing
 
@@ -9,6 +9,8 @@
 - Configured inter-VLAN routing between VLAN 10 and VLAN 30
 - Implemented firewall rules for controlled RDP access
 - Validated traffic flow and troubleshooting methodology
+
+## 2026-03-03
 
 Initial homelab architecture completed.
 
